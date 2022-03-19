@@ -9,6 +9,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static co.com.sofka.util.Timer.SIX;
+
 
 public class ParabankTest extends WebUi {
     private ParabankModel parabankModel;
@@ -23,10 +25,11 @@ public class ParabankTest extends WebUi {
             generalSetUp();
 
             parabankModel = new ParabankModel();
-            parabankModel.setNameContactUs("Camilo Diaz");
-            parabankModel.setEmailContactUs("andrescamilo@gmail.com");
-            parabankModel.setPhoneContactUs("32165497");
-            parabankModel.setMessageContactUs("Hola mundo si pude");
+
+            parabankModel.setNameContactUs      ();
+            parabankModel.setEmailContactUs     ();
+            parabankModel.setPhoneContactUs     ();
+            parabankModel.setMessageContactUs   ();
 
         } catch (Exception exception){
             quiteDriver();
@@ -38,10 +41,12 @@ public class ParabankTest extends WebUi {
     @Test
     public void parabankTestMandatoryFieldsContactUs(){
         try{
-            ParabankContactUsPage parabankContactUsPage = new ParabankContactUsPage(driver, parabankModel);
+           ParabankContactUsPage parabankContactUsPage = new ParabankContactUsPage(driver, parabankModel, SIX.getValue());
             parabankContactUsPage.fillContactUs();
 
             Assertions.assertEquals(forSubmittedContactUs(),parabankContactUsPage.isContactUsDone());
+
+
         } catch (Exception exception){
             quiteDriver();
             Assertions.fail(exception.getMessage(), exception);
@@ -59,5 +64,8 @@ public class ParabankTest extends WebUi {
         submitedsendToCostumerCare = "Thank you "+parabankModel.getNameContactUs();
         return submitedsendToCostumerCare;
     }
+
+
+
 
 }

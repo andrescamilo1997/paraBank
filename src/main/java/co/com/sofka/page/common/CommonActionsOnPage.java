@@ -1,14 +1,30 @@
 package co.com.sofka.page.common;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+
 
 public class CommonActionsOnPage {
     private static final Logger LOGGER = Logger.getLogger(CommonActionsOnPage.class);
     private static final String WEBDRIVER_NULL_MESSAGE = "\nWARNING!\n\rThe Webdriver is NULL, please check it.\n";
     private WebDriver driver;
+
+    private WebDriverWait webDriverExplicitWait;
+
+
+    private void setWebDriverExplicitWait(WebDriver driver, int seconds){
+        try{
+            webDriverExplicitWait = new WebDriverWait(driver, seconds);
+
+        } catch (Exception e){
+            LOGGER.warn(e.getMessage(), e);
+        }
+    }
 
     //Constructor
     public CommonActionsOnPage(WebDriver driver) {
@@ -23,40 +39,63 @@ public class CommonActionsOnPage {
         }
     }
 
+    public CommonActionsOnPage(WebDriver driver, int second) {
+        try{
+            if(driver == null) {
+                LOGGER.warn(WEBDRIVER_NULL_MESSAGE);
+            }
+            this.driver = driver;
+            setWebDriverExplicitWait(driver,second);
+
+
+        } catch (Exception e){
+            LOGGER.warn(e.getMessage(), e);
+        }
+    }
+
+    //Inicializar pom con Page Factory
+    protected void pageFactoryInitElement(WebDriver driver, Object page){
+        PageFactory.initElements(driver, page);
+
+    }
+
     //Funcionalidades
 
-    protected void clearOn(By locator){
-        driver.findElement(locator).clear();
+    protected void clearOn(WebElement webElement){
+        webDriverExplicitWait.until(elementToBeClickable(webElement)).clear();
     }
 
-    protected void clickOn(By locator){
-        driver.findElement(locator).click();
+    protected void clickOn(WebElement webElement){
+        webDriverExplicitWait.until(elementToBeClickable(webElement)).click();
     }
 
-    protected void typeOn(By locator, CharSequence... keysToSend){
-        driver.findElement(locator).sendKeys(keysToSend);
+    protected void typeOn(WebElement webElement, CharSequence... keysToSend){
+        webDriverExplicitWait.until(elementToBeClickable(webElement)).sendKeys(keysToSend);
     }
 
-    protected void scrollOn(By locator){
+    protected void scrollOn(WebElement webElement){
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-        jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(locator));
+        jse.executeScript("arguments[0].scrollIntoView();"
+                , webDriverExplicitWait.until(elementToBeClickable(webElement)));
+
     }
 
-    protected void doSubmit(By locator){
-        driver.findElement(locator).submit();
+    protected void doSubmit(WebElement webElement){
+        webDriverExplicitWait.until(elementToBeClickable(webElement)).submit();
     }
 
-    protected String getText(By locator){
-        return driver.findElement(locator).getText();
+    protected String getText(WebElement webElement){
+        return webDriverExplicitWait.until(elementToBeClickable(webElement)).getText();
     }
 
-    protected Boolean isDisplayed(By locator){
+    protected Boolean isDisplayed(WebElement webElement){
         try{
-            return driver.findElement(locator).isDisplayed();
+            return webElement.isDisplayed();
         }catch (org.openqa.selenium.NoSuchElementException e){
             return false;
         }
     }
+
 
 
 

@@ -10,7 +10,7 @@ import static com.google.common.base.StandardSystemProperty.USER_DIR;
 public class WebUi {
 
     private static final String WEBDRIVER_CHROME_DRIVER = "webdriver.chrome.driver";
-    private static final String WEBDRIVER_CHROME_DRIVER_PATH = "src/test/resources/driver/windows/chrome/chromedriver.exe";
+    private static final String WEBDRIVER_CHROME_DRIVER_PATH = "src/test/resources/driver.windows.chrome/chromedriver.exe";
 
     private static final String PARABANK_URL = "https://parabank.parasoft.com/parabank/index.htm";
 
@@ -33,10 +33,4 @@ public class WebUi {
     protected void quiteDriver(){
         driver.quit();
     }
-
-
-
-
-
-
 }
