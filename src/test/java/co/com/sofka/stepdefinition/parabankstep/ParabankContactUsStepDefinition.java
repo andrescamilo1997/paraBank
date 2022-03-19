@@ -8,9 +8,7 @@ import org.apache.log4j.Logger;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 import static co.com.sofka.util.Timer.SIX;
-
 import org.junit.jupiter.api.Assertions;
 
 
@@ -25,7 +23,6 @@ public class ParabankContactUsStepDefinition extends WebUi {
             setUpLog4j2();
             setUpWebDriver();
             generalSetUp();
-
 
         } catch (Exception exception){
             quiteDriver();
@@ -59,9 +56,7 @@ public class ParabankContactUsStepDefinition extends WebUi {
         try{
             parabankModel = new ParabankModel();
 
-
             parabankModel.setNameContactUs   ();
-
             parabankModel.setPhoneContactUs  ();
             parabankModel.setMessageContactUs();
 

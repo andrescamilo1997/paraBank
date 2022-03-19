@@ -14,7 +14,7 @@ import static co.com.sofka.util.Timer.SIX;
 
 
 public class ParabankLogInStepDefinition extends WebUi {
-    private ParabankModel parabankModel = new ParabankModel();
+    private ParabankModel parabankModel;
     private static final Logger LOGGER = Logger.getLogger(ParabankLogInStepDefinition.class);
     private ParabankLogInPage parabankLogInPage;
 
@@ -25,6 +25,52 @@ public class ParabankLogInStepDefinition extends WebUi {
             setUpLog4j2();
             setUpWebDriver();
             generalSetUp();
+
+        } catch (Exception exception){
+            quiteDriver();
+            Assertions.fail(exception.getMessage(), exception);
+            LOGGER.error(exception.getMessage(),exception);
+        }
+    }
+
+    @When("El cliente ingresa a su perfil con sus credenciales")
+    public void elClienteIngresaSuEmailYPassword() {
+        try{
+            parabankModel = new ParabankModel();
+
+            parabankModel.setFirstNameRegister  ();
+            parabankModel.setLastaNameRegister  ();
+            parabankModel.setAddressRegister    ();
+            parabankModel.setCityRegister       ();
+            parabankModel.setStateRegister      ();
+            parabankModel.setZipCodeRegister    ();
+            parabankModel.setPhoneRegister      ();
+            parabankModel.setSsnRegister        ();
+            parabankModel.setUsernameRegister   ();
+            parabankModel.setPasswordRegister   ();
+            parabankModel.setConfirmPassRegister();
+
+
+            ParabankRegister parabankRegister =new ParabankRegister(driver, parabankModel, SIX.getValue());
+            parabankRegister.fillRegisterPage();
+
+            parabankModel.setUsernameLogin();
+            parabankModel.setPasswordLogin();
+
+            parabankLogInPage = new ParabankLogInPage(driver, parabankModel, SIX.getValue());
+            parabankLogInPage.fillLogIn();
+
+
+        } catch (Exception exception){
+            quiteDriver();
+            Assertions.fail(exception.getMessage(), exception);
+            LOGGER.error(exception.getMessage(),exception);
+        }
+    }
+    @When("El cliente ingresa una contracena asignada, pero no su correo")
+    public void elClienteIngresaPassword() {
+        try{
+            parabankModel = new ParabankModel();
 
 
             parabankModel.setFirstNameRegister  ();
@@ -43,33 +89,6 @@ public class ParabankLogInStepDefinition extends WebUi {
             ParabankRegister parabankRegister =new ParabankRegister(driver, parabankModel, SIX.getValue());
             parabankRegister.fillRegisterPage();
 
-        } catch (Exception exception){
-            quiteDriver();
-            Assertions.fail(exception.getMessage(), exception);
-            LOGGER.error(exception.getMessage(),exception);
-        }
-    }
-
-    @When("El cliente ingresa a su perfil con sus credenciales")
-    public void elClienteIngresaSuEmailYPassword() {
-        try{
-
-            parabankModel.setUsernameLogin();
-            parabankModel.setPasswordLogin();
-
-            parabankLogInPage = new ParabankLogInPage(driver, parabankModel, SIX.getValue());
-            parabankLogInPage.fillLogIn();
-
-
-        } catch (Exception exception){
-            quiteDriver();
-            Assertions.fail(exception.getMessage(), exception);
-            LOGGER.error(exception.getMessage(),exception);
-        }
-    }
-    @When("El cliente ingresa una contracena asignada, pero no su correo")
-    public void elClienteIngresaPassword() {
-        try{
             parabankModel.setPasswordLogin();
 
             parabankLogInPage = new ParabankLogInPage(driver, parabankModel, SIX.getValue());
