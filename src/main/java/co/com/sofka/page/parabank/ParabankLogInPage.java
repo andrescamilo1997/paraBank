@@ -3,6 +3,7 @@ package co.com.sofka.page.parabank;
 import co.com.sofka.model.parabank.ParabankModel;
 import co.com.sofka.page.common.CommonActionsOnPage;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -18,7 +19,6 @@ public class ParabankLogInPage extends CommonActionsOnPage {
         pageFactoryInitElement(driver, this);
         this.parabankModel = parabankModel;
     }
-
 
     @CacheLookup
     @FindBy(id = "leftPanel")
@@ -66,7 +66,7 @@ public class ParabankLogInPage extends CommonActionsOnPage {
             typeOn      (passPageLogIn, parabankModel.getPasswordLogin());
 
             scrollOn    (logInPageLogIn);
-            clickOn     (logInPageLogIn);
+            doSubmit    (logInPageLogIn);
         }else {
             LOGGER.warn(MODEL_NULL_MESSAGE);
         }

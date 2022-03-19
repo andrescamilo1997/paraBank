@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 
 public class CommonActionsOnPage {
@@ -55,14 +56,17 @@ public class CommonActionsOnPage {
         webDriverExplicitWait.until(elementToBeClickable(webElement)).click();
     }
 
+
     protected void typeOn(WebElement webElement, CharSequence... keysToSend){
         webDriverExplicitWait.until(elementToBeClickable(webElement)).sendKeys(keysToSend);
     }
 
     protected void scrollOn(WebElement webElement){
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-        jse.executeScript("arguments[0].scrollIntoView();"
-                , webDriverExplicitWait.until(elementToBeClickable(webElement)));
+        jse.executeScript(
+                "arguments[0].scrollIntoView();",
+                webDriverExplicitWait.until(visibilityOf(webElement))
+        );
 
     }
 

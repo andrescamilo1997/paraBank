@@ -8,10 +8,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
+
+import static co.com.sofka.util.Timer.ONE;
 import static co.com.sofka.util.Timer.SIX;
 
 public class ParabankRegisterStepDefinition extends WebUi {
-    private ParabankModel parabankModel;
+    private ParabankModel pbankModel;
     private static final Logger LOGGER = Logger.getLogger(ParabankRegisterStepDefinition.class);
     private ParabankRegister parabankRegister;
     @Given(": Que el cliente entra en la plataforma, seccion registro")
@@ -31,21 +33,21 @@ public class ParabankRegisterStepDefinition extends WebUi {
     @When("ingresa se le solicitan los datos personales")
     public void ingresaSeLeSolicitanLosDatosPersonales() {
         try{
-            parabankModel = new ParabankModel();
+            pbankModel = new ParabankModel();
 
-            parabankModel.setFirstNameRegister  ();
-            parabankModel.setLastaNameRegister  ();
-            parabankModel.setAddressRegister    ();
-            parabankModel.setCityRegister       ();
-            parabankModel.setStateRegister      ();
-            parabankModel.setZipCodeRegister    ();
-            parabankModel.setPhoneRegister      ();
-            parabankModel.setSsnRegister        ();
-            parabankModel.setUsernameRegister   ();
-            parabankModel.setPasswordRegister   ();
-            parabankModel.setConfirmPassRegister();
+            pbankModel.setFirstNameRegister  ();
+            pbankModel.setLastaNameRegister  ();
+            pbankModel.setAddressRegister    ();
+            pbankModel.setCityRegister       ();
+            pbankModel.setStateRegister      ();
+            pbankModel.setZipCodeRegister    ();
+            pbankModel.setPhoneRegister      ();
+            pbankModel.setSsnRegister        ();
+            pbankModel.setUsernameRegister();
+            pbankModel.setPasswordRegister   ();
+            pbankModel.setConfirmPassRegister();
 
-            parabankRegister =new ParabankRegister(driver, parabankModel, SIX.getValue());
+            parabankRegister = new ParabankRegister(driver, pbankModel, ONE.getValue());
             parabankRegister.fillRegisterPage();
 
         } catch (Exception exception){
@@ -58,19 +60,19 @@ public class ParabankRegisterStepDefinition extends WebUi {
 
     @When("Se le solicitan los datos personales pero no ingresa el apellido, y direccion")
     public void SeLeSolicitanLosDatosPersonalesPeroNoIngresaElApellido() {
-        parabankModel = new ParabankModel();
+        pbankModel = new ParabankModel();
 
-        parabankModel.setFirstNameRegister  ();
-        parabankModel.setCityRegister       ();
-        parabankModel.setStateRegister      ();
-        parabankModel.setZipCodeRegister    ();
-        parabankModel.setPhoneRegister      ();
-        parabankModel.setSsnRegister        ();
-        parabankModel.setUsernameRegister   ();
-        parabankModel.setPasswordRegister   ();
-        parabankModel.setConfirmPassRegister();
+        pbankModel.setFirstNameRegister  ();
+        pbankModel.setCityRegister       ();
+        pbankModel.setStateRegister      ();
+        pbankModel.setZipCodeRegister    ();
+        pbankModel.setPhoneRegister      ();
+        pbankModel.setSsnRegister        ();
+        pbankModel.setUsernameRegister   ();
+        pbankModel.setPasswordRegister   ();
+        pbankModel.setConfirmPassRegister();
 
-        parabankRegister =new ParabankRegister(driver, parabankModel, SIX.getValue());
+        parabankRegister =new ParabankRegister(driver, pbankModel, SIX.getValue());
         parabankRegister.fillRegisterPage();
     }
 
@@ -87,7 +89,7 @@ public class ParabankRegisterStepDefinition extends WebUi {
 
     private  String forSubmittedRegister(){
         String  submittedRegister;
-        submittedRegister = "Welcome " + parabankModel.getUsernameRegister();
+        submittedRegister = "Welcome " + pbankModel.getUsernameRegister();
         return submittedRegister;
     }
     private  String forSubmittedIfNotHaveLastNameRegister(){

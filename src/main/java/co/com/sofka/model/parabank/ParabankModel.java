@@ -1,7 +1,6 @@
 package co.com.sofka.model.parabank;
 
-import com.github.javafaker.Faker;
-import co.com.sofka.util.Mensaje;
+import co.com.sofka.util.MeesageGeneralContacts;
 
 public class ParabankModel {
 
@@ -25,30 +24,14 @@ public class ParabankModel {
     private String passwordRegister;
     private String confirmPassRegister;
 
-    Mensaje mensaje = new Mensaje();
-    Faker   faker   = new Faker();
-
-    String firstName    = faker.name().firstName();
-    String lastName     = faker.name().lastName();
-    String address      = faker.address().secondaryAddress();
-    String city         = faker.address().cityName();
-    String state        = faker.address().state();
-    String zCode        = faker.address().zipCode();
-    String phone        = faker.phoneNumber().cellPhone();
-    String ssn          = String.valueOf(faker.number().numberBetween(11111111,99999999));
-    String user         = firstName + phone + 1;
-    String pass         = lastName + ssn;
-    String email        = firstName + "_" + lastName + "@gmail.com";
-    String Message      = mensaje.messageContactUs(firstName, lastName);
-
-
+    MeesageGeneralContacts meesageGeneralContacts = new MeesageGeneralContacts();
 
     public String getNameContactUs() {
         return nameContactUs;
     }
 
     public void setNameContactUs() {
-        this.nameContactUs = firstName + " " + lastName;
+        this.nameContactUs = meesageGeneralContacts.fullName();
     }
 
     public String getEmailContactUs() {
@@ -56,7 +39,7 @@ public class ParabankModel {
     }
 
     public void setEmailContactUs() {
-        this.emailContactUs = email;
+        this.emailContactUs = meesageGeneralContacts.email();
     }
 
     public String getPhoneContactUs() {
@@ -64,7 +47,7 @@ public class ParabankModel {
     }
 
     public void setPhoneContactUs() {
-        this.phoneContactUs = phone;
+        this.phoneContactUs = meesageGeneralContacts.getPhone();
     }
 
     public String getMessageContactUs() {
@@ -72,7 +55,7 @@ public class ParabankModel {
     }
 
     public void setMessageContactUs() {
-        this.messageContactUs = Message;
+        this.messageContactUs = meesageGeneralContacts.toString();
     }
 
     public String getUsernameLogin() {
@@ -80,7 +63,7 @@ public class ParabankModel {
     }
 
     public void setUsernameLogin() {
-        this.usernameLogin = user;
+        this.usernameLogin = meesageGeneralContacts.userNameRegister();
     }
 
     public String getPasswordLogin() {
@@ -88,7 +71,7 @@ public class ParabankModel {
     }
 
     public void setPasswordLogin() {
-         this.passwordLogin = pass;
+         this.passwordLogin = meesageGeneralContacts.password();
     }
 
     public String getFirstNameRegister() {
@@ -96,7 +79,7 @@ public class ParabankModel {
     }
 
     public void setFirstNameRegister() {
-        this.firstNameRegister = firstName;
+        this.firstNameRegister = meesageGeneralContacts.getFirstName();
     }
 
     public String getLastNameRegister() {
@@ -104,7 +87,7 @@ public class ParabankModel {
     }
 
     public void setLastaNameRegister() {
-        this.lastNameRegister = lastName;
+        this.lastNameRegister = meesageGeneralContacts.getLastName();
     }
 
     public String getAddressRegister() {
@@ -112,7 +95,7 @@ public class ParabankModel {
     }
 
     public void setAddressRegister() {
-        this.addressRegister = address;
+        this.addressRegister = meesageGeneralContacts.getAddress();
     }
 
     public String getCityRegister() {
@@ -120,7 +103,7 @@ public class ParabankModel {
     }
 
     public void setCityRegister() {
-        this.cityRegister = city;
+        this.cityRegister = meesageGeneralContacts.getCity();
     }
 
     public String getStateRegister() {
@@ -128,7 +111,7 @@ public class ParabankModel {
     }
 
     public void setStateRegister() {
-        this.stateRegister = state;
+        this.stateRegister = meesageGeneralContacts.getState();
     }
 
     public String getZipCodeRegister() {
@@ -136,7 +119,7 @@ public class ParabankModel {
     }
 
     public void setZipCodeRegister() {
-        this.zipCodeRegister = zCode;
+        this.zipCodeRegister = meesageGeneralContacts.getzCode();
     }
 
     public String getPhoneRegister() {
@@ -144,7 +127,7 @@ public class ParabankModel {
     }
 
     public void setPhoneRegister() {
-        this.phoneRegister = phone;
+        this.phoneRegister = meesageGeneralContacts.getPhone();
     }
 
     public String getSsnRegister() {
@@ -152,7 +135,7 @@ public class ParabankModel {
     }
 
     public void setSsnRegister() {
-        this.ssnRegister = ssn;
+        this.ssnRegister = meesageGeneralContacts.ssn();
     }
 
     public String getUsernameRegister() {
@@ -160,7 +143,7 @@ public class ParabankModel {
     }
 
     public void setUsernameRegister() {
-        this.usernameRegister = user;
+        this.usernameRegister = meesageGeneralContacts.userNameRegister();
     }
 
     public String getPasswordRegister() {
@@ -168,7 +151,7 @@ public class ParabankModel {
     }
 
     public void setPasswordRegister() {
-        this.passwordRegister = pass;
+        this.passwordRegister = meesageGeneralContacts.password();
     }
 
     public String getConfirmPassRegister() {
@@ -176,6 +159,6 @@ public class ParabankModel {
     }
 
     public void setConfirmPassRegister() {
-        this.confirmPassRegister = pass;
+        this.confirmPassRegister = meesageGeneralContacts.password();
     }
 }

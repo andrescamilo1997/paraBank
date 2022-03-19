@@ -138,7 +138,7 @@ public class ParabankRegister extends CommonActionsOnPage {
             typeOn      (passRepeatedRegister,parabankModel.getConfirmPassRegister());
 
             scrollOn    (btnDoneRegister);
-            clickOn     (btnDoneRegister);
+            doSubmit    (btnDoneRegister);
 
            }else {
             LOGGER.warn(MESSAGE_NULL_IN_REGISTER);
