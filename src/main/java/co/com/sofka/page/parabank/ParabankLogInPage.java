@@ -9,35 +9,38 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 public class ParabankLogInPage extends CommonActionsOnPage {
-    private static final Logger LOGGER =  Logger.getLogger(ParabankLogInPage.class);
-    private final ParabankModel parabankModel;
-    private static final String MODEL_NULL_MESSAGE ="NO SE ENCONTRARON RESULTADOS ESPERADOS";
+    private static  final Logger LOGGER =  Logger.getLogger(ParabankLogInPage.class);
+    private         final ParabankModel parabankModel;
+    private static  final String MODEL_NULL_MESSAGE ="NO SE ENCONTRARON RESULTADOS ESPERADOS";
+
+    public ParabankLogInPage(WebDriver driver, ParabankModel parabankModel, int second) {
+        super(driver, second);
+        pageFactoryInitElement(driver, this);
+        this.parabankModel = parabankModel;
+    }
 
 
-
-
-    //Campos
     @CacheLookup
     @FindBy(id = "leftPanel")
     private WebElement panel;
 
     @CacheLookup
     @FindBy(name = "username")
-    private WebElement UserNamePageLogIn;
+    private WebElement userNamePageLogIn;
 
     @CacheLookup
     @FindBy(name = "password")
-    private WebElement PassPageLogIn;
+    private WebElement passPageLogIn;
 
     @CacheLookup
     @FindBy(xpath = "//*[@id=\"loginPanel\"]/form/div[3]/input")
-    private WebElement LogInPageLogIn;
+    private WebElement logInPageLogIn;
 
     @CacheLookup
     @FindBy(xpath = "//*[@id=\"leftPanel\"]/ul/li[8]/a")
     private WebElement btnLogOut;
 
-    //Resultado Esperado
+    //Resultados Esperados
     @CacheLookup
     @FindBy(xpath = "//*[@id=\"accountTable\"]/tfoot/tr/td")
     private WebElement assertionMessageIsLogIn;
@@ -48,34 +51,22 @@ public class ParabankLogInPage extends CommonActionsOnPage {
 
 
 
-
-
-
-
-    public ParabankLogInPage(WebDriver driver, ParabankModel parabankModel, int second) {
-        super(driver, second);
-        pageFactoryInitElement(driver, this);
-        this.parabankModel = parabankModel;
-
-    }
-
     //Funcionalidades Page LogIn
-
     public void fillLogIn(){
         scrollOn    (btnLogOut);
         clickOn     (btnLogOut);
 
         if(isDisplayed(panel)){
-            scrollOn(UserNamePageLogIn);
-            clearOn(UserNamePageLogIn);
-            typeOn(UserNamePageLogIn, parabankModel.getUsernameLogin());
+            scrollOn    (userNamePageLogIn);
+            clearOn     (userNamePageLogIn);
+            typeOn      (userNamePageLogIn, parabankModel.getUsernameLogin());
 
-            scrollOn(PassPageLogIn);
-            clickOn(PassPageLogIn);
-            typeOn(PassPageLogIn, parabankModel.getPasswordLogin());
+            scrollOn    (passPageLogIn);
+            clickOn     (passPageLogIn);
+            typeOn      (passPageLogIn, parabankModel.getPasswordLogin());
 
-            scrollOn(LogInPageLogIn);
-            clickOn(LogInPageLogIn);
+            scrollOn    (logInPageLogIn);
+            clickOn     (logInPageLogIn);
         }else {
             LOGGER.warn(MODEL_NULL_MESSAGE);
         }
@@ -90,7 +81,4 @@ public class ParabankLogInPage extends CommonActionsOnPage {
         submittedSendToLogIn = getText(assertionMessageIfNotHaveEmail);
         return submittedSendToLogIn;
     }
-
-
-
 }

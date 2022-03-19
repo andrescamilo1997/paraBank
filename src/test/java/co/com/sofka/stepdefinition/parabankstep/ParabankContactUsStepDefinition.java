@@ -2,7 +2,6 @@ package co.com.sofka.stepdefinition.parabankstep;
 
 import co.com.sofka.model.parabank.ParabankModel;
 import co.com.sofka.page.parabank.ParabankContactUsPage;
-import co.com.sofka.runner.parabank.ParabankTest;
 import co.com.sofka.stepdefinition.setup.WebUi;
 import org.apache.log4j.Logger;
 
@@ -17,7 +16,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class ParabankContactUsStepDefinition extends WebUi {
     private ParabankModel parabankModel;
-    private static final Logger LOGGER = Logger.getLogger(ParabankTest.class);
+    private static final Logger LOGGER = Logger.getLogger(ParabankContactUsStepDefinition.class);
     private ParabankContactUsPage parabankContactUsPage;
 
     @Given("El cliente se encuentra en la seccion contact us de parabank")

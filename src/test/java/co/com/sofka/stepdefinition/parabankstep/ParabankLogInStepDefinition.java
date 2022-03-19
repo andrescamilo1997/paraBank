@@ -4,7 +4,6 @@ package co.com.sofka.stepdefinition.parabankstep;
 import co.com.sofka.model.parabank.ParabankModel;
 import co.com.sofka.page.parabank.ParabankLogInPage;
 import co.com.sofka.page.parabank.ParabankRegister;
-import co.com.sofka.runner.parabank.ParabankLogin;
 import co.com.sofka.stepdefinition.setup.WebUi;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -16,7 +15,7 @@ import static co.com.sofka.util.Timer.SIX;
 
 public class ParabankLogInStepDefinition extends WebUi {
     private ParabankModel parabankModel = new ParabankModel();
-    private static final Logger LOGGER = Logger.getLogger(ParabankLogin.class);
+    private static final Logger LOGGER = Logger.getLogger(ParabankLogInStepDefinition.class);
     private ParabankLogInPage parabankLogInPage;
 
 
@@ -68,7 +67,7 @@ public class ParabankLogInStepDefinition extends WebUi {
             LOGGER.error(exception.getMessage(),exception);
         }
     }
-    @When("El cliente ingresa una contraceña asignada, pero no su correo")
+    @When("El cliente ingresa una contracena asignada, pero no su correo")
     public void elClienteIngresaPassword() {
         try{
             parabankModel.setPasswordLogin();

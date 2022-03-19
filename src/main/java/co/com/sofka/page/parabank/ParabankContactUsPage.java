@@ -14,9 +14,15 @@ public class ParabankContactUsPage extends CommonActionsOnPage {
     private        final ParabankModel parabankModel;
     private static final String MODEL_NULL_MESSAGE = "No se encuentra la página buscada.";
 
+    public ParabankContactUsPage(WebDriver driver, ParabankModel parabankModel, int Second) {
+        super(driver,Second);
+        pageFactoryInitElement(driver,this);
+        this.parabankModel = parabankModel;
+    }
+
     @CacheLookup
     @FindBy(xpath ="//*[@id=\"contactForm\"]/table")
-    private WebElement ContactPageLocator;
+    private WebElement contactPageLocator;
 
     @CacheLookup
     @FindBy(xpath ="//*[@id=\"footerPanel\"]/ul[1]/li[8]/a")
@@ -46,6 +52,7 @@ public class ParabankContactUsPage extends CommonActionsOnPage {
     @CacheLookup
     @FindBy(xpath = "//*[@id=\"rightPanel\"]/p[1]")
     private WebElement assertionMessageNameContactUs;
+
     //In case you do not have contact Us ok
     @CacheLookup
     @FindBy(xpath = "//*[@id=\"email.errors\"]")
@@ -53,40 +60,36 @@ public class ParabankContactUsPage extends CommonActionsOnPage {
 
 
 
-    public ParabankContactUsPage(WebDriver driver, ParabankModel parabankModel, int Second) {
-        super(driver,Second);
-        pageFactoryInitElement(driver,this);
-        this.parabankModel = parabankModel;
-    }
+
 
 
 
     //Funcionalidades del Page
 
     public void fillContactUs(){
-        scrollOn(btnContactUs);
-        clickOn(btnContactUs);
+        scrollOn    (btnContactUs);
+        clickOn     (btnContactUs);
 
-        if(isDisplayed(ContactPageLocator)) {
+        if(isDisplayed(contactPageLocator)) {
 
-            scrollOn(nameContactUs);
-            clearOn(nameContactUs);
-            typeOn(nameContactUs, parabankModel.getNameContactUs());
+            scrollOn    (nameContactUs);
+            clearOn     (nameContactUs);
+            typeOn      (nameContactUs, parabankModel.getNameContactUs());
 
-            scrollOn(emailContactUs);
-            clearOn(emailContactUs);
-            typeOn(emailContactUs, parabankModel.getEmailContactUs());
+            scrollOn    (emailContactUs);
+            clearOn     (emailContactUs);
+            typeOn      (emailContactUs, parabankModel.getEmailContactUs());
 
-            scrollOn(phoneContactUs);
-            clearOn(phoneContactUs);
-            typeOn(phoneContactUs, parabankModel.getPhoneContactUs());
+            scrollOn    (phoneContactUs);
+            clearOn     (phoneContactUs);
+            typeOn      (phoneContactUs, parabankModel.getPhoneContactUs());
 
-            scrollOn(messageContactUs);
-            clearOn(messageContactUs);
-            typeOn(messageContactUs, parabankModel.getMessageContactUs());
+            scrollOn    (messageContactUs);
+            clearOn     (messageContactUs);
+            typeOn      (messageContactUs, parabankModel.getMessageContactUs());
 
-            scrollOn(sendToCostumerCare);
-            doSubmit(sendToCostumerCare);
+            scrollOn    (sendToCostumerCare);
+            doSubmit    (sendToCostumerCare);
 
         }else{
             LOGGER.warn(MODEL_NULL_MESSAGE);

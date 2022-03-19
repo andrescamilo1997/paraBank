@@ -3,8 +3,6 @@ package co.com.sofka.model.parabank;
 import com.github.javafaker.Faker;
 import co.com.sofka.util.Mensaje;
 
-import java.util.Locale;
-
 public class ParabankModel {
 
     private String nameContactUs ="";
@@ -28,20 +26,20 @@ public class ParabankModel {
     private String confirmPassRegister;
 
     Mensaje mensaje = new Mensaje();
-    Faker   faker   = new Faker(new Locale("es-COL"));
+    Faker   faker   = new Faker();
 
-    String fName    = faker.name().firstName();
-    String lName    = faker.name().lastName();
-    String address  = faker.address().secondaryAddress();
-    String city     = faker.address().cityName();
-    String state    = faker.address().state();
-    String zCode    = faker.address().zipCode();
-    String phone    = faker.phoneNumber().cellPhone();
-    String ssn      = String.valueOf(faker.number().numberBetween(00000001,99999999));
-    String user     = fName + zCode;
-    String pass     = lName + ssn;
-    String email    = fName + "_" + lName + "@gmail.com";
-    String Message  = mensaje.messageContactUs(fName, lName);
+    String firstName    = faker.name().firstName();
+    String lastName     = faker.name().lastName();
+    String address      = faker.address().secondaryAddress();
+    String city         = faker.address().cityName();
+    String state        = faker.address().state();
+    String zCode        = faker.address().zipCode();
+    String phone        = faker.phoneNumber().cellPhone();
+    String ssn          = String.valueOf(faker.number().numberBetween(11111111,99999999));
+    String user         = firstName + phone + 1;
+    String pass         = lastName + ssn;
+    String email        = firstName + "_" + lastName + "@gmail.com";
+    String Message      = mensaje.messageContactUs(firstName, lastName);
 
 
 
@@ -50,7 +48,7 @@ public class ParabankModel {
     }
 
     public void setNameContactUs() {
-        this.nameContactUs = fName + " " +lName;
+        this.nameContactUs = firstName + " " + lastName;
     }
 
     public String getEmailContactUs() {
@@ -82,7 +80,7 @@ public class ParabankModel {
     }
 
     public void setUsernameLogin() {
-        this.usernameLogin = email;
+        this.usernameLogin = user;
     }
 
     public String getPasswordLogin() {
@@ -90,7 +88,7 @@ public class ParabankModel {
     }
 
     public void setPasswordLogin() {
-        this.passwordLogin = pass;
+         this.passwordLogin = pass;
     }
 
     public String getFirstNameRegister() {
@@ -98,7 +96,7 @@ public class ParabankModel {
     }
 
     public void setFirstNameRegister() {
-        this.firstNameRegister = fName;
+        this.firstNameRegister = firstName;
     }
 
     public String getLastNameRegister() {
@@ -106,7 +104,7 @@ public class ParabankModel {
     }
 
     public void setLastaNameRegister() {
-        this.lastNameRegister = lName;
+        this.lastNameRegister = lastName;
     }
 
     public String getAddressRegister() {

@@ -14,13 +14,19 @@ public class ParabankRegister extends CommonActionsOnPage {
     private         final ParabankModel parabankModel;
     private static  final String MESSAGE_NULL_IN_REGISTER="No se pudo ejecutar la prueba a Registro";
 
+    public ParabankRegister(WebDriver driver, ParabankModel parabankModel, int second) {
+        super(driver, second);
+        pageFactoryInitElement(driver,this);
+        this.parabankModel = parabankModel;
+    }
+
     @CacheLookup
     @FindBy(id="customerForm")
     private WebElement registerPageLocator;
 
     @CacheLookup
     @FindBy(xpath="//*[@id=\"loginPanel\"]/p[2]/a")
-    private WebElement BtnRegister;
+    private WebElement btnRegister;
 
     @CacheLookup
     @FindBy(id="customer.firstName")
@@ -64,15 +70,14 @@ public class ParabankRegister extends CommonActionsOnPage {
 
     @CacheLookup
     @FindBy(id="repeatedPassword")
-    private WebElement  passRepeatedRegister;
+    private WebElement passRepeatedRegister;
 
     @CacheLookup
     @FindBy(xpath="//*[@id=\"customerForm\"]/table/tbody/tr[13]/td[2]/input")
-    private WebElement  btnDoneRegister;
+    private WebElement btnDoneRegister;
 
 
     //For Assertion
-
     @CacheLookup
     @FindBy(xpath = "//*[@id=\"rightPanel\"]/h1" )
     private WebElement assertionInRegister;
@@ -81,20 +86,10 @@ public class ParabankRegister extends CommonActionsOnPage {
     @FindBy(xpath = "//*[@id=\"customer.lastName.errors\"]")
     private WebElement assertionIfNotHaveLastName;
 
-
-
-    public ParabankRegister(WebDriver driver, ParabankModel parabankModel, int second) {
-        super(driver, second);
-        pageFactoryInitElement(driver,this);
-        this.parabankModel = parabankModel;
-    }
-
-
     //Functions Page
-
     public void fillRegisterPage(){
-        scrollOn        (BtnRegister);
-        clickOn         (BtnRegister);
+        scrollOn        (btnRegister);
+        clickOn         (btnRegister);
 
         if(isDisplayed(registerPageLocator)){
 
@@ -154,13 +149,11 @@ public class ParabankRegister extends CommonActionsOnPage {
     public String  isRegisterDone(){
         String isRegisterDoneMessage;
         isRegisterDoneMessage = getText(assertionInRegister).trim();
-
         return isRegisterDoneMessage;
     }
     public String  isRegisterDoneIfNotHaveLastName(){
         String isRegisterDoneMessage;
         isRegisterDoneMessage = getText(assertionIfNotHaveLastName).trim();
-
         return isRegisterDoneMessage;
     }
 }

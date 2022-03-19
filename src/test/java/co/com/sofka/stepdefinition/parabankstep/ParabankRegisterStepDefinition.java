@@ -2,7 +2,6 @@ package co.com.sofka.stepdefinition.parabankstep;
 
 import co.com.sofka.model.parabank.ParabankModel;
 import co.com.sofka.page.parabank.ParabankRegister;
-import co.com.sofka.runner.parabank.ParabankRegistro;
 import co.com.sofka.stepdefinition.setup.WebUi;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,7 +12,7 @@ import static co.com.sofka.util.Timer.SIX;
 
 public class ParabankRegisterStepDefinition extends WebUi {
     private ParabankModel parabankModel;
-    private static final Logger LOGGER = Logger.getLogger(ParabankRegistro.class);
+    private static final Logger LOGGER = Logger.getLogger(ParabankRegisterStepDefinition.class);
     private ParabankRegister parabankRegister;
     @Given(": Que el cliente entra en la plataforma, seccion registro")
     public void queElClienteEntraEnLaPlataformaSeccionRegistro() {

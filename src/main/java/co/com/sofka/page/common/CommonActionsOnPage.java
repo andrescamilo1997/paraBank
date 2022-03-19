@@ -10,11 +10,11 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
 
 
 public class CommonActionsOnPage {
-    private static final Logger LOGGER = Logger.getLogger(CommonActionsOnPage.class);
-    private static final String WEBDRIVER_NULL_MESSAGE = "\nWARNING!\n\rThe Webdriver is NULL, please check it.\n";
-    private WebDriver driver;
+    private static final    Logger LOGGER = Logger.getLogger(CommonActionsOnPage.class);
+    private static final    String WEBDRIVER_NULL_MESSAGE = "\nWARNING!\n\rThe Webdriver is NULL, please check it.\n";
+    private                 WebDriver driver;
 
-    private WebDriverWait webDriverExplicitWait;
+    private                 WebDriverWait webDriverExplicitWait;
 
 
     private void setWebDriverExplicitWait(WebDriver driver, int seconds){
@@ -26,19 +26,7 @@ public class CommonActionsOnPage {
         }
     }
 
-    //Constructor
-    public CommonActionsOnPage(WebDriver driver) {
-        try{
-            if(driver == null) {
-                LOGGER.warn(WEBDRIVER_NULL_MESSAGE);
-            }
-            this.driver = driver;
-
-        } catch (Exception e){
-            LOGGER.warn(e.getMessage(), e);
-        }
-    }
-
+    //Constructores
     public CommonActionsOnPage(WebDriver driver, int second) {
         try{
             if(driver == null) {
@@ -56,11 +44,9 @@ public class CommonActionsOnPage {
     //Inicializar pom con Page Factory
     protected void pageFactoryInitElement(WebDriver driver, Object page){
         PageFactory.initElements(driver, page);
-
     }
 
     //Funcionalidades
-
     protected void clearOn(WebElement webElement){
         webDriverExplicitWait.until(elementToBeClickable(webElement)).clear();
     }
@@ -95,8 +81,4 @@ public class CommonActionsOnPage {
             return false;
         }
     }
-
-
-
-
 }

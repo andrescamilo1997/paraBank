@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/features/customer_care.feature"},
         glue = "co.com.sofka.stepdefinition.parabankstep",
         tags = "@Contact"
-
 )
 public class ContactUsRunnerCucumber {
 }
