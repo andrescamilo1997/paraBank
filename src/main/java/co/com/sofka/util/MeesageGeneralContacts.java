@@ -61,7 +61,7 @@ public class MeesageGeneralContacts {
         return firstName + "_" + lastName;
     }
     public String password(){
-        return lastName + "-" + lastName + 1;
+        return firstName + lastName + 1;
     }
 
     @Override

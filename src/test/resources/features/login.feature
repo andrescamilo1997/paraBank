@@ -15,3 +15,5 @@ Feature: Login
   Scenario: El cliente proporciona las credenciales para poder ver su balance pero no usa email
     When 	El cliente ingresa una contracena asignada, pero no su correo
     Then 	Sale un error indicandole el ingreso de sus credenciales
+
+
