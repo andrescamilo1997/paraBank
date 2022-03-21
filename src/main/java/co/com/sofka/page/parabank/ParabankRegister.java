@@ -146,6 +146,8 @@ public class ParabankRegister extends CommonActionsOnPage {
 
     }
 
+
+
     public String  isRegisterDone(){
         String isRegisterDoneMessage;
         isRegisterDoneMessage = getText(assertionInRegister).trim();

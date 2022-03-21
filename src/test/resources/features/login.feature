@@ -17,3 +17,7 @@ Feature: Login
     Then 	Sale un error indicandole el ingreso de sus credenciales
 
 
+  @login
+  Scenario: El cliente entra a la pagina y va directamente al login
+    When    el cliente intenta ingresar con sus credenciales que no estan verificadas
+    Then    sale un error indicandole que el correo o contracenia no han sido verifivadas

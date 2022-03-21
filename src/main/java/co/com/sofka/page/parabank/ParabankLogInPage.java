@@ -49,13 +49,18 @@ public class ParabankLogInPage extends CommonActionsOnPage {
     @FindBy(xpath = "//*[@id=\"rightPanel\"]/p")
     private  WebElement assertionMessageIfNotHaveEmail;
 
+    @CacheLookup
+    @FindBy(xpath = "//*[@id=\"rightPanel\"]/p")
+    private  WebElement assertionMessageIfNotHaveRegister;
+
 
 
     //Funcionalidades Page LogIn
     public void fillLogIn(){
+        if(isDisplayed(btnLogOut)){
         scrollOn    (btnLogOut);
         clickOn     (btnLogOut);
-
+        }
         if(isDisplayed(panel)){
             scrollOn    (userNamePageLogIn);
             clearOn     (userNamePageLogIn);
@@ -79,6 +84,11 @@ public class ParabankLogInPage extends CommonActionsOnPage {
     public String isLogInDoneIfNotHaveEmail(){
         String submittedSendToLogIn;
         submittedSendToLogIn = getText(assertionMessageIfNotHaveEmail);
+        return submittedSendToLogIn;
+    }
+    public String isLogInDoneIfNotHaveRegister(){
+        String submittedSendToLogIn;
+        submittedSendToLogIn = getText(assertionMessageIfNotHaveRegister);
         return submittedSendToLogIn;
     }
 }

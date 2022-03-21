@@ -103,6 +103,22 @@ public class ParabankLogInStepDefinition extends WebUi {
         }
 
     }
+    @When("el cliente intenta ingresar con sus credenciales que no estan verificadas")
+    public void elClineteIntentaIngresarConSusCredencialesQueNoEstanVerificadas() {
+        try {
+            parabankModel = new ParabankModel();
+            parabankModel.setUsernameLogin();
+            parabankModel.setPasswordLogin();
+
+            parabankLogInPage = new ParabankLogInPage(driver, parabankModel, SIX.getValue());
+            parabankLogInPage.fillLogIn();
+
+        }catch (Exception exception){
+            quiteDriver();
+            Assertions.fail(exception.getMessage(), exception);
+            LOGGER.error(exception.getMessage(),exception);
+        }
+    }
 
 
     @Then("El cliente entra a ver sus balace")
@@ -113,6 +129,11 @@ public class ParabankLogInStepDefinition extends WebUi {
     @Then("Sale un error indicandole el ingreso de sus credenciales")
     public void saleUnErrorIndicandoleElIngresoDeSusCredenciales() {
         Assertions.assertEquals(forSubmittedLogInIfNotHaveEmail(), parabankLogInPage.isLogInDoneIfNotHaveEmail());
+        quiteDriver();
+    }
+    @Then("sale un error indicandole que el correo o contracenia no han sido verifivadas")
+    public void saleUnErrorIndicandoleQueElCorreoOContraceniaNoHanSidoVerifivadas() {
+        Assertions.assertEquals(forSubmittedLogInIfNotHaveRegister(), parabankLogInPage.isLogInDoneIfNotHaveRegister());
         quiteDriver();
     }
 
@@ -127,7 +148,11 @@ public class ParabankLogInStepDefinition extends WebUi {
         submitedLogIn = "Please enter a username and password.";
         return submitedLogIn;
     }
-
+    private  String forSubmittedLogInIfNotHaveRegister(){
+        String submitedLogIn;
+        submitedLogIn = "The username and password could not be verified.";
+        return submitedLogIn;
+    }
 
 
 }
